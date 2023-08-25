@@ -14,7 +14,7 @@ To directly install these dependencies, run the following command:
 ```
 pip install -r requirements.txt
 ```
-## Usage
+## General Usage of kmerSV
 
 ### 1. **Paired Sequences**
 
