@@ -9,7 +9,7 @@ kmerSV is optimized for:
 - **matplotlib** version 3.7.0 or higher
 - **pandas** version 1.2.0 or higher
 
-To seamlessly install these dependencies, run the following command:
+To directly install these dependencies, run the following command:
 
 ```
 pip install -r requirements.txt
