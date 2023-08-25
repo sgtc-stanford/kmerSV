@@ -93,6 +93,7 @@ python3 kmerSV_plot.py -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_
 - **SV Plot:** SV_plot.png
 - **SV Details:** SV_info.txt
 
+### Visualization and Annotation with Pangenome Reference
 
 To visuliaze and annotate the SVs with the pangenome reference, use the following command::
 
