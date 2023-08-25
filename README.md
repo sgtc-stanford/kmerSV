@@ -25,7 +25,7 @@ pip install -r requirements.txt
 To generate an SV plot for a pair of sequences, execute the following command with `kmerSV_plot.py`:
 
 ```bash
-python kmerSV_plot.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+python3 kmerSV_plot.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -45,7 +45,7 @@ python kmerSV_plot.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [
 To generate an SV plot using a pangenome reference, execute the following command with `kmerSV_pangenome.py`:
 
 ```bash
-python kmerSV_pangenome.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+python3 kmerSV_pangenome.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -86,7 +86,7 @@ The associated annotation data, found in `data/annotation/annotation.bed`, origi
 To visualize and annotate the SVs using a pair of sequences, use the following command:
 
 ```bash
-python kmerSV_plot.py -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
+python3 kmerSV_plot.py -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
 ```
 
 **Output:**
