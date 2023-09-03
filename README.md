@@ -22,10 +22,10 @@ pip install -r requirements.txt
 
 ### 1. **Paired Sequences**
 
-To generate an SV plot for a pair of sequences, execute the following command with `kmerSV_plot.py`:
+To generate an SV plot for a pair of sequences, use `kmersv.py` script with mode `plot`:
 
 ```bash
-python3 kmerSV_plot.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+python3 kmersv.py plot [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -42,10 +42,10 @@ python3 kmerSV_plot.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] 
 
 ### 2. **Pangenome Reference**
 
-To generate an SV plot using a pangenome reference, execute the following command with `kmerSV_pangenome.py`:
+To generate an SV plot using a pangenome reference, use `kmersv.py` script with mode `pangenome`:
 
 ```bash
-python3 kmerSV_pangenome.py [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+python3 kmersv.py pangenome [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -86,7 +86,7 @@ The associated annotation data, found in `data/annotation/annotation.bed`, origi
 To visualize and annotate the SVs using a pair of sequences, use the following command:
 
 ```bash
-python3 kmerSV_plot.py -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
+python3 kmersv.py plot -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
 ```
 
 **Output:**
@@ -98,7 +98,7 @@ python3 kmerSV_plot.py -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_
 To visuliaze and annotate the SVs with the pangenome reference, use the following command::
 
 ```bash
-python3 kmerSV_pangenome.py -i data/test/chr19_pan.fasta -o SV_pan_plot.png -c chr19 -s 4512541 -e 4513161 -k 31
+python3 kmersv.py pangenome -i data/test/chr19_pan.fasta -o SV_pan_plot.png -c chr19 -s 4512541 -e 4513161 -k 31
 ```
 **Output:**
 - **SV Plot:** SV_pan_plot.png
