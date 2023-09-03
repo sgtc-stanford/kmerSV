@@ -7,23 +7,28 @@ import re
 import argparse
 import SV_utilities as SV
 
-if __name__ == '__main__':
-    # take arguments from command line
-    parser = argparse.ArgumentParser(description='Plot kmer SVs')
-    parser.add_argument('-r', '--reference', help='reference sequence', required=True)
-    parser.add_argument('-i', '--input', help='target sequence', required=True)
-    parser.add_argument('-o', '--output', help='output SV plot', required=True)
-    parser.add_argument('-a', '--annotation', help='Genomic Annotation File', required=False, default='data/annotation/MANE_exon_intron.st.bed')
-    parser.add_argument('-c', '--chr', help='chromosome region')
-    parser.add_argument('-s', '--start', help='start position')
-    parser.add_argument('-e', '--end', help='end position')
-    parser.add_argument('-k', '--kmer', help='kmer legnth', required=True, default=31)
-    parser.add_argument('-f', '--text', help='output text file with detailed information', required=True)
-    args = parser.parse_args()
+def kmersv_plot_function(reference, input, output, annotation, chr, start, end, kmer, text):
+    """
+    Generates a kmer-based structural variant (SV) plot using a given reference genome.
 
-    k = int(args.kmer)
-    ref_path = args.reference
-    query_path = args.input
+    Parameters:
+    - reference (str): Path to the reference FASTA file.
+    - input_file (str): Path to the input FASTA file containing all sample paths.
+    - output_file (str): Path to save the output SV plot.
+    - annotation (str, optional): Path to the Genomic Annotation File. Default is 'data/annotation/MANE_exon_intron.st.bed'.
+    - chr_region (str, optional): Chromosome region for analysis.
+    - start_pos (int, optional): Start position in the chromosome for analysis.
+    - end_pos (int, optional): End position in the chromosome for analysis.
+    - kmer_length (int, optional): Length of the kmer. Default is 31.
+    - text (str, optional): Path to save the output text file with detailed information. Default is 'data/output/SV.txt'.
+
+    Returns:
+    None. The function saves the plot to the specified output_file.
+    """
+
+    k = int(kmer)
+    ref_path = reference
+    query_path = input
 
     # extract the reference genome from a fasta file
     ref_genome = SV.get_genome(ref_path)
@@ -155,7 +160,7 @@ if __name__ == '__main__':
                                 num_match += 1
     print(variants)
     # write variants to the output file (tab-delimited)
-    with open(args.text, 'w') as f:
+    with open(text, 'w') as f:
         # write a header
         f.write('\t'.join(['SV type', 'ref_start', 'ref_end', 'length']) + '\n')
         for variant in variants:
@@ -220,13 +225,13 @@ if __name__ == '__main__':
                 query_pos_nonunique_dup.append(query_kmer_pos_dup[i])
 
     # Load BED file
-    path_annotate = args.annotation
+    path_annotate = annotation
     df = pd.read_csv(path_annotate, sep='\t')
 
     # User input for chromosome name and region
-    chr_name = args.chr
-    start_pos = int(args.start)
-    end_pos = int(args.end)
+    chr_name = chr
+    start_pos = int(start)
+    end_pos = int(end)
 
 
     # Filter dataframe based on user input
@@ -304,4 +309,4 @@ if __name__ == '__main__':
         plt.text(end_pos-1530, min_y + 2000, str(gene_after_dist)+'bp to ' +gene_after, ha='center', va='center', fontsize=7, color='red', weight='bold')
     plt.ylim(min_y, max_y)
     plt.tight_layout()
-    plt.savefig(args.output, dpi=1200)
+    plt.savefig(output, dpi=1200)

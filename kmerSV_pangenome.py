@@ -8,20 +8,25 @@ from collections import Counter
 import pandas as pd
 import SV_pangenome as SV
 
-if __name__ == '__main__':
-    # take arguments from command line
-    parser = argparse.ArgumentParser(description='Plot kmer SVs')
-    parser.add_argument('-i', '--input', help='input fasta file with all sample paths', required=True)
-    parser.add_argument('-o', '--output', help='output SV plot using pangenome reference', required=True)
-    parser.add_argument('-a', '--annotation', help='Genomic Annotation File', required=False, default='data/annotation/MANE_exon_intron.st.bed')
-    parser.add_argument('-c', '--chr', help='chromosome region')
-    parser.add_argument('-s', '--start', help='start position')
-    parser.add_argument('-e', '--end', help='end position')
-    parser.add_argument('-k', '--kmer', help='kmer legnth', required=True, default=31)
-    args = parser.parse_args()
+def kmersv_pangenome_function(input, output, annotation, chr, start, end, kmer):
+    """
+    Generates a kmer-based pangenome analysis plot using a given reference genome.
 
-    k = int(args.kmer)
-    path = args.input
+    Parameters:
+    - input_file (str): Path to the input FASTA file containing all sample paths.
+    - output_file (str): Path to save the output pangenome plot.
+    - annotation (str, optional): Path to the Genomic Annotation File. Default is 'data/annotation/MANE_exon_intron.st.bed'.
+    - chr_region (str, optional): Chromosome region for analysis.
+    - start_pos (int, optional): Start position in the chromosome for analysis.
+    - end_pos (int, optional): End position in the chromosome for analysis.
+    - kmer_length (int, optional): Length of the kmer. Default is 31.
+
+    Returns:
+    None. The function saves the plot to the specified output_file.
+    """
+
+    k = int(kmer)
+    path = input
     # read the first sequence in fasta file as reference genome
     ref_genome = SV.get_genome(path)
 
@@ -158,16 +163,16 @@ if __name__ == '__main__':
 
     # Add gene annotation
     # Load BED file
-    df = pd.read_csv("/mnt/ix1/Projects/M077_210115_kmer_assembly_analysis/P05_kmer_SVplot/MANE_exon_intron.st.bed", sep='\t')
-    # User input for chromosome name and region
-    chr_name = args.chr
-    start_pos = int(args.start)	
-    end_pos = int(args.end)
+    path_annotate = annotation
+    df = pd.read_csv(path_annotate, sep='\t')
+    
+    chr_name = chr
+    start_pos = int(start)	
+    end_pos = int(end)
     plot_start = start_pos
     plot_end = end_pos
     # Filter dataframe based on user input
     filtered_df = df[(df['#chr'] == chr_name) & (df['start'] <= start_pos) & (df['end'] >= end_pos)]
-    print(filtered_df)
 
     # if filtered_df is empty, find the closet two genes using the start and end position
 
@@ -208,7 +213,7 @@ if __name__ == '__main__':
     plt.xlim(start_pos-30, end_pos+180)
     plt.legend(loc='best', prop={'size': 4})
 
-    plt.savefig(args.output, dpi=1000)
+    plt.savefig(output, dpi=1000)
 
 
 
