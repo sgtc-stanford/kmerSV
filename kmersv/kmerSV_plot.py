@@ -5,7 +5,7 @@ import matplotlib.cm as cm
 import pandas as pd
 import re
 import argparse
-import SV_utilities as SV
+from . import SV_utilities as SV
 
 def kmersv_plot_function(reference, input, output, annotation, chr, start, end, kmer, text):
     """

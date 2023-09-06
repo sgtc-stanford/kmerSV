@@ -6,7 +6,7 @@ import re
 import argparse
 from collections import Counter
 import pandas as pd
-import SV_pangenome as SV
+from . import SV_pangenome as SV
 
 def kmersv_pangenome_function(input, output, annotation, chr, start, end, kmer):
     """

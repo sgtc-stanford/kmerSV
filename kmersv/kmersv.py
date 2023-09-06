@@ -1,8 +1,9 @@
 # main script for kmerSV
 
 import argparse
-from kmerSV_plot import kmersv_plot_function
-from kmerSV_pangenome import kmersv_pangenome_function
+from .kmerSV_plot import kmersv_plot_function
+from .kmerSV_pangenome import kmersv_pangenome_function
+
 
 def main():
     parser = argparse.ArgumentParser(description='''
