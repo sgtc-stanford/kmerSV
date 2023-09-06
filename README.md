@@ -2,22 +2,34 @@
 kmerSV: a visualization and annotation tool for structural variants (SVs). Users can input both a reference and a target sequence, which will generate a SV plot complete with genomic annotations. Additionally, kmerSV offers support for visualizing SVs against a pangenomic reference. Specifcally, users can utilize the pangenome tool such as odgi tool (https://github.com/pangenome/odgi) to extract all paths within a specified region of the pangenome graph. Once these samples are extracted and saved in a fasta file, they can be seamlessly integrated into the kmerSV for visualization.
 
 ## Installation
-Download repository
+Download and navigate into the repository:
 ```
 git clone https://github.com/sgtc-stanford/kmerSV.git
+cd kmerSV
+```
+kmerSV can be installed directly using **pip**, which will also handle the required dependencies:
+```
+pip install .
+```
+After installation, if you encounter issues running **kmersv** due to **PATH** issues:
+
+- Add the installation path (e.g. **~/.local/bin**) to your **PATH**. Note that the exact installation path can vary based on the platform and how **pip** is invoked.
+- Alternatively, you can use ```sudo pip install .``` to install the script system-wide. However, this approach has its own set of challenges and is generally not recommended.
+- It's often recommended to use virtual environments, where the script will be installed in the **PATH** of the activated environment.
+
+## Dependencies
+kmerSV runs on **Python** version 3.9.0 or higher. Your operating system might already provide Python, which you can check on the command line:
+```
+python --version
 ```
 
 kmerSV is optimized for:
-- **Python** version 3.9.0 or higher
 - **numpy** version 1.20.1 or higher
 - **matplotlib** version 3.7.0 or higher
 - **pandas** version 1.2.0 or higher
 
-To directly install these dependencies, run the following command:
+These dependencies will be automatically installed by **pip** during the installation process.
 
-```
-pip install -r requirements.txt
-```
 ## General Usage of kmerSV
 
 ### 1. **Paired Sequences**
@@ -25,7 +37,7 @@ pip install -r requirements.txt
 To generate an SV plot for a pair of sequences, use `kmersv.py` script with mode `plot`:
 
 ```bash
-python3 kmersv.py plot [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+kmersv plot [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -45,7 +57,7 @@ python3 kmersv.py plot [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] 
 To generate an SV plot using a pangenome reference, use `kmersv.py` script with mode `pangenome`:
 
 ```bash
-python3 kmersv.py pangenome [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
+kmersv pangenome [-h] -i INPUT -o OUTPUT -k KMER [-a ANNOTATION] [-c CHR] [-s START] [-e END]
 ```
 #### Optional Arguments:
 
@@ -86,7 +98,7 @@ The associated annotation data, found in `data/annotation/annotation.bed`, origi
 To visualize and annotate the SVs using a pair of sequences, use the following command:
 
 ```bash
-python3 kmersv.py plot -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
+kmersv plot -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_plot.png -a data/annotation/annotation.bed -c chr5 -s 141169588 -e 141184761 -k 31 -f SV_info.txt
 ```
 
 **Output:**
@@ -98,7 +110,7 @@ python3 kmersv.py plot -r data/test/chr5.fasta -i data/test/hg02080.fasta -o SV_
 To visuliaze and annotate the SVs with the pangenome reference, use the following command::
 
 ```bash
-python3 kmersv.py pangenome -i data/test/chr19_pan.fasta -o SV_pan_plot.png -c chr19 -s 4512541 -e 4513161 -k 31
+kmersv pangenome -i data/test/chr19_pan.fasta -o SV_pan_plot.png -c chr19 -s 4512541 -e 4513161 -k 31
 ```
 **Output:**
 - **SV Plot:** SV_pan_plot.png
