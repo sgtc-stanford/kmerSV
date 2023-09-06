@@ -1,5 +1,5 @@
 # kmerSV
-kmerSV: a visualization and annotation tool for structural variants (SVs). Users can input both a reference and a target sequence, which will generate a SV plot complete with genomic annotations. Additionally, kmerSV offers support for visualizing SVs against a pangenomic reference. Specifcally, users can utilize the pangenome tool such as odgi tool (https://github.com/pangenome/odgi) to extract all paths within a specified region of the pangenome graph. Once these samples are extracted and saved in a fasta file, they can be seamlessly integrated into the kmerSV for visualization.
+kmerSV: a visualization and annotation tool for structural variants (SVs). Users can input both a reference and a target sequence, which will generate a SV plot complete with genomic annotations. Additionally, kmerSV offers support for visualizing SVs against a pangenomic reference. Specifcally, users can utilize the pangenome tool such as [odgi](https://github.com/pangenome/odgi) to extract all paths within a specified region of the pangenome graph. Once these samples are extracted and saved in a fasta file, they can be seamlessly integrated into the kmerSV for visualization.
 
 ## Installation
 Download and navigate into the repository:
